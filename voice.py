@@ -5,13 +5,13 @@ import webbrowser
 from datetime import datetime
 
 def speak(text):
-    # Convert text to speech and play it
+   
     tts = gTTS(text=text, lang='en')
-    tts.save("response.mp3")
-    os.system("start response.mp3")
+    tts.save("res.mp3")
+    os.system("start res.mp3")
 
 def recognize_speech():
-    # Recognize speech using Google Speech Recognition
+
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
@@ -19,7 +19,7 @@ def recognize_speech():
         audio = recognizer.listen(source)
 
     try:
-        print("Recognizing...")
+        print("Analyzing...")
         query = recognizer.recognize_google(audio).lower()
         print(f"You said: {query}")
         return query
@@ -32,7 +32,7 @@ def recognize_speech():
 
 def handle_command(command):
     if "hello" in command:
-        speak("Hello! How can I assist you today?")
+        speak("Hello! I am your Voice assistant")
     elif "time" in command:
         current_time = datetime.now().strftime("%H:%M:%S")
         speak(f"The current time is {current_time}")
@@ -42,7 +42,7 @@ def handle_command(command):
     elif "search" in command:
         search_query = command.replace("search", "").strip()
         if search_query:
-            speak(f"Searching the web for {search_query}")
+            speak(f"Searching  for {search_query}")
             webbrowser.open(f"https://www.google.com/search?q={search_query}")
         else:
             speak("What would you like me to search for?")
